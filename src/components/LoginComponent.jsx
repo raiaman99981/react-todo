@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-
+import { useNavigate } from "react-router-dom";
 
 const LoginComponent=()=>{
     const[heading,setHeading]=useState(false);
-    const[secondHeading,setSecondHeading]=useState(false);
-   
+
+   const navigate=useNavigate();
     const[input,setInput]=useState({
     email:"",
     password:""
@@ -23,10 +23,10 @@ const LoginComponent=()=>{
     const handleSubmit=(event)=>{
         event.preventDefault();
         if(input.email==="aman@2002" && input.password==="123"){
-            setHeading(true);
+             navigate("welcome")
         }
         else{
-            setSecondHeading(true);
+            setHeading(true);
         }
     }
 
@@ -35,13 +35,12 @@ const LoginComponent=()=>{
 
     return(
         <>
-       {heading && <h1>WELCOME</h1>}
-       {secondHeading && <h1>AUTH FAILED</h1>}
+       {heading && <h1>AUTH FAILED</h1>}
     <form>
     <div class="mb-3 col-4 ms-5">
     <label for="exampleInputEmail1" className="form-label">Email address</label>
     <input onClick={()=>{
-        setSecondHeading()
+        setHeading(false)
     }} onChange={handleChange}  name="email" value={input.email} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
     </div>
