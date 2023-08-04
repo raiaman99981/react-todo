@@ -23,7 +23,7 @@ const LoginComponent=()=>{
     const handleSubmit=(event)=>{
         event.preventDefault();
         if(input.email==="aman@2002" && input.password==="123"){
-             navigate("welcome")
+             navigate(`welcome/${input.email}`)
         }
         else{
             setHeading(true);
