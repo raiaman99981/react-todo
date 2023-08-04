@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "./AuthProvider";
 const LoginComponent=()=>{
     const[heading,setHeading]=useState(false);
-
+    const {login,setLogin}=useAuth();
    const navigate=useNavigate();
     const[input,setInput]=useState({
     email:"",
     password:""
     })
 
+    
     const handleChange=(event)=>{
        const value=event.target.value;
        const name=event.target.name;
@@ -23,7 +24,8 @@ const LoginComponent=()=>{
     const handleSubmit=(event)=>{
         event.preventDefault();
         if(input.email==="aman@2002" && input.password==="123"){
-             navigate(`welcome/${input.email}`)
+            setLogin(true); 
+            navigate(`welcome/${input.email}`)    
         }
         else{
             setHeading(true);
@@ -31,9 +33,12 @@ const LoginComponent=()=>{
     }
 
 
-
+  
+    
 
     return(
+        
+        
         <>
        {heading && <h1>AUTH FAILED</h1>}
     <form>
